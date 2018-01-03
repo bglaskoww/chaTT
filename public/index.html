@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Chat TT</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet"
+          href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://unpkg.com/material-components-web@latest/dist/material-components-web.css">
+	<link rel="stylesheet"
+          href="css/style.css" />
+
+</head>
+<body>
+
+<h1>ChatTT</h1>
+<div class="container-fluid">
+	<form onSubmit="chatLogin(); return false;" id="chatLogin" class="form-inline">
+		<div class="form-group mx-sm-3">
+			<label for="nickname">Nickname</label>
+			<input type="text" name="nickname" placeholder="your nickname" required id="nickname" class="form-control form-control-lg"  />
+		</div>
+		<div class="form-group mx-sm-3">
+			<label for="email">email</label>
+			<input type="email" name="email" placeholder="your nickname" required id="email" class="form-control form-control-lg"  />
+		</div>
+		<div class="form-group mx-sm-3">
+			<label for="password">passw</label>
+			<input type="password" name="password" placeholder="your nickname" required id="password" class="form-control form-control-lg"  />
+		</div>
+
+		<input type="submit" value="Enter chat" class="btn btn-primary" />
+
+	</form>
+
+    <button onclick="Registration()" class="btn btn-primary float-right">Registration</button>
+    <button onclick="Registration()" class="btn btn-primary float-right">Login?</button>
+
+    <div id="chatRoom" style="display: none;" class="row">
+		<div id="usersList" class="col-4"></div>
+		<div id="chatWindow" class="col-8"></div>
+	</div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chatwindow.view.js"></script>
+<script src="/js/chattt.js"></script>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.js"></script>
+
+
+</body>
+</html>
