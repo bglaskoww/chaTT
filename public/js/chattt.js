@@ -8,6 +8,13 @@ var chatUsers = null;
 socket.on('hello', function (data) {
 	console.log('Server said hello!', data);
 });
+socket.on('', function(data){
+	console.log('first page hello');
+	document.getElementById('login_or_register').style.display = 'flex';
+	document.getElementById('chatRoom').style.display = 'none';
+	document.getElementById('chatLogin').style.display = 'none';
+})
+
 socket.on('disconnect', function (data) {
 	console.log('Goodbye server');
 	document.getElementById('chatLogin').style.display = 'flex';
@@ -16,6 +23,7 @@ socket.on('disconnect', function (data) {
 socket.on('loginSuccess', function (data) {
 	console.log('Login success!', data);
 	myName = data.nick;
+	window.sessionStorage.setItem('user_info') = data;
 	document.getElementById('chatLogin').style.display = 'none';
 	document.getElementById('chatRoom').style.display = 'flex';
 });
@@ -141,11 +149,27 @@ function chatLogin() {
 	}
 }
 
-function Registration() {
-    console.log('aa');
-}
+jQuery('#chatLogin').on('submit', function(e) {
+	e.preventDefault();
+	jQuery.ajax({
+	  type: "POST",
+	  url: '/register',
+	  data: {
+	  	name: jQuery(this).find('#name').val(),
+	  	nickname: jQuery(this).find('#nickname').val(),
+	  	password: jQuery(this).find('#password').val(),
+	  	email: jQuery(this).find('#email').val(),
+	  	gender: jQuery(this).find('#gender').val(),
 
-function logindom() {
-    var a = 'alabala';
-    console.log(a);
+	  },
+	  success: function(ret) {
+	  	console.log(ret);
+	  },
+		error: function(data) {
+        console.log(ret);
+            },
+	  dataType: dataType
+	  console.log('baaaaaaaaaaaaaaaaaa jq');
+	});
 }
+);

@@ -1,4 +1,5 @@
-
+var UserHandler = require('./server.js');
+var db = require('./database.js');
 var USERS = {
 	/* "Krum": 'Krum',
 	 * "Bobby": 'Bobby'*/
@@ -13,8 +14,25 @@ function usersList(socket) {
 }
 
 module.exports = {
-	
-	
+	registration: function(data /*username pass email gender*/) {
+			console.log('Pravq registraciq !');
+			var requiredFieldsOk = !!(data.nickname &&
+                data.password &&
+                data.email &&
+                data.gender &&
+                data.nickname);
+			console.log('requiredFieldsOk: ', requiredFieldsOk);
+			if (!requiredFieldsOk) {
+				return false;
+			} else {
+				console.log('console logvam da widq metodite');
+				console.log(db);
+                console.log('console logvam da widq metodite');
+                db.createUser(data);
+                return true;
+               
+			}
+        },
 	socketHandlers: {
 		login: function(socket, data /*{nick: 'Nickname'}*/) {
 			if (data.nick && !USERS[data.nick]) {
@@ -41,12 +59,7 @@ module.exports = {
 				console.log(socket.nickname, ' to ', data.to, ': ', data.msg);
 			}
 		},
-		Registration: function (socket,data /*username pass email gender*/) {
-			if (data.nickname)
-			{
-
-			}
-        }
+		
 
 		
 	}
